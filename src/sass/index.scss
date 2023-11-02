@@ -1,0 +1,661 @@
+@use './colors' as *;
+@use './animations' as *;
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	position: relative;
+	font-family: 'Fira Sans', sans-serif;
+	margin: 0 auto;
+	font-size: 1.6rem;
+	scroll-padding-top: 50px;
+	// color: $black;
+	// background-color: $white;
+}
+
+.App {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	color: $black;
+	background-color: $white;
+}
+
+html.lenis {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto;
+}
+
+.container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1260px;
+	padding: 0em 1em;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding-top: 4em;
+}
+
+main {
+	width: 100%;
+}
+
+.sectionTitle {
+	transform-origin: left;
+	h2 {
+		font-size: 2rem;
+		font-weight: 400;
+	}
+}
+
+.sectionHeader {
+	transform-origin: bottom;
+	h3 {
+		font-size: 2rem;
+		font-weight: 400;
+	}
+}
+
+.logo--link {
+	font-size: 2.6rem;
+	text-decoration: none;
+	color: $white;
+	span {
+		color: $greyDark;
+	}
+}
+
+.menuBtn {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	font-size: 2.6rem;
+	color: $white;
+	cursor: pointer;
+	transition: opacity 0.3s;
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+.burgerBtn {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	&::before {
+		position: absolute;
+		content: '';
+		top: 30%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: $white;
+		transition: width 0.4s;
+	}
+	&::after {
+		position: absolute;
+		content: '';
+		bottom: 30%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: $white;
+		transition: width 0.4s;
+	}
+	&.burgerActive {
+		&::before {
+			top: 50%;
+			width: 100%;
+			animation: burgerAnim 1s 0s both;
+		}
+		&::after {
+			top: 50%;
+			width: 100%;
+			animation: burgerAnimBack 1s 0s both;
+		}
+	}
+}
+.nav {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 2em 1em;
+	width: 100%;
+	max-width: 1260px;
+	z-index: 120;
+	mix-blend-mode: difference;
+	opacity: 0;
+	animation: navShow 1s 5s both;
+}
+.menu {
+	position: fixed;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding-top: 6em;
+	background-color: $menuBg;
+	z-index: 100;
+	transform: translateY(-100%);
+	&-main {
+		display: flex;
+		height: 200px;
+		align-items: center;
+	}
+	&-list {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		gap: 1em;
+		font-size: 2.6rem;
+		overflow: hidden;
+	}
+	&-item {
+		&-link {
+			text-decoration: none;
+			color: $black;
+			transition: filter 0.4s, opacity 0.3s;
+		}
+	}
+}
+
+.blurClass {
+	filter: blur(4px);
+	opacity: 0.7;
+}
+
+.paragraph {
+	font-weight: 300;
+	line-height: 190%;
+	padding-top: 4em;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	//do zmiany padingami
+	height: 100vh;
+
+	&-txt {
+		width: fit-content;
+		align-self: center;
+		justify-self: center;
+		overflow: hidden;
+		transform-origin: left;
+		h1 {
+			font-size: 4rem;
+			span {
+				background-color: $greyDark;
+				color: $white;
+				padding: 0.2em;
+			}
+		}
+		h2 {
+			font-size: 4rem;
+			sup {
+				font-size: 2rem;
+			}
+		}
+	}
+	&-desc {
+		padding-top: 6em;
+		align-self: flex-start;
+		font-size: 2rem;
+	}
+	&-link {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		padding-bottom: 4em;
+		animation: navShow 1s 5s both;
+		&--link {
+			color: $black;
+			text-decoration: none;
+			border-bottom: 1px solid $black;
+			padding-bottom: 1em;
+			transition: opacity 0.3s;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+		p {
+			padding-bottom: 1em;
+		}
+	}
+}
+
+.about-title {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	gap: 1em;
+	width: 100%;
+}
+
+.about-desc {
+	display: flex;
+	flex-direction: column;
+	padding: 6em 0em;
+	font-size: 1.6rem;
+	gap: 5em;
+	width: 100%;
+	&--title {
+		font-weight: bold;
+		width: 20%;
+	}
+	&--txt {
+		width: 100%;
+	}
+	&--link {
+		color: $black;
+		text-decoration: none;
+		border-bottom: 1px solid black;
+		padding-bottom: 0.7em;
+		transition: opacity 0.3s;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}
+
+.work {
+	width: 100%;
+	.sectionTitle {
+		font-size: 14rem;
+	}
+	&-main {
+		display: flex;
+		flex-direction: column;
+		gap: 4em;
+		padding-top: 4em;
+	}
+	&-artist {
+		width: 100%;
+		&-img {
+			position: relative;
+			border-radius: 16px;
+			border: none;
+			overflow: hidden;
+			height: 80vh;
+			img {
+				object-fit: cover;
+				object-position: center;
+				width: 100%;
+				height: 100%;
+			}
+			&--desc {
+				position: absolute;
+				bottom: 0;
+				display: flex;
+				align-items: center;
+				gap: 1em;
+				padding: 1em;
+				width: 100%;
+				background-color: $white;
+				font-weight: 300;
+				transform: translateY(100%);
+				transition: transform 1s;
+				img {
+					border-radius: 16px;
+					width: 160px;
+					height: 100px;
+				}
+			}
+		}
+		&--link {
+			padding-top: 2em;
+			a {
+				text-decoration: none;
+				color: $black;
+				border-bottom: 1px solid $black;
+				padding-bottom: 0.7em;
+				transition: opacity 0.3s;
+				&:hover {
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+}
+
+.messen {
+	&-title {
+		display: flex;
+		gap: 1em;
+		justify-content: space-between;
+		.sectionTitle {
+			color: $greyDark;
+			flex-shrink: 1;
+		}
+	}
+	&-main {
+		display: flex;
+		flex-direction: column;
+		padding-top: 4em;
+		gap: 5em;
+		width: 100%;
+		h3 {
+			font-weight: 400;
+			font-size: 3rem;
+		}
+		&-title {
+			width: 50%;
+		}
+	}
+}
+
+.accordion {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	cursor: pointer;
+	&-item {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		border-top: 1px solid $greyLight;
+		&:hover img {
+			transform: scaleY(1);
+		}
+		&--top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 2em 0em;
+			img {
+				width: 100px;
+				height: 100px;
+				border-radius: 12px;
+				transform-origin: center;
+				transform: scaleY(0);
+				transition: transform 0.4s;
+			}
+		}
+		&--button {
+			position: relative;
+			display: flex;
+			width: 30px;
+			height: 30px;
+
+			&::after {
+				position: absolute;
+				content: '';
+				top: 50%;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background-color: $greyLight;
+			}
+			&::before {
+				position: absolute;
+				content: '';
+				top: 50%;
+				width: 100%;
+				height: 1px;
+				transform: rotate(90deg);
+				background-color: $greyLight;
+				animation: accordionNotActive 0.7s 0s both;
+			}
+		}
+		&--button.accordionActive {
+			&::before {
+				animation: accordionActive 0.7s 0s both;
+			}
+		}
+		&--bottom {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			color: $greyDark;
+			overflow: hidden;
+			transform-origin: top;
+			p {
+				width: 80%;
+				padding: 1em;
+			}
+		}
+	}
+	&-item:last-of-type {
+		border-bottom: 1px solid $greyLight;
+	}
+}
+
+.contactSection {
+	width: 100%;
+	&-title {
+		display: flex;
+		justify-content: space-between;
+		padding: 2em 0em;
+		width: 100%;
+		border-top: 1px solid $greyDark;
+		border-bottom: 1px solid $greyDark;
+		.sectionTitle {
+			padding: 2em 0em;
+			h2 {
+				font-size: 2rem;
+			}
+		}
+	}
+	&-main {
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+		padding: 5em 0em;
+	}
+	&-branch {
+		border: 1px solid $greyDark;
+		padding: 4em 2em;
+		.paragraph {
+			padding: 0em;
+		}
+	}
+}
+
+.footer {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 4em 0em;
+	.sectionTitle {
+		h2 {
+			font-size: 3rem;
+			font-weight: bold;
+		}
+	}
+	a {
+		color: $black;
+		text-decoration: none;
+	}
+}
+
+.artist {
+	&-biography,
+	&-exhibitions {
+		width: 100%;
+	}
+	&-exhibitions {
+		ul {
+			list-style: none;
+			display: flex;
+			gap: 2em;
+			flex-wrap: wrap;
+			padding-top: 5em;
+			li {
+				width: 45%;
+				font-weight: 300;
+			}
+		}
+	}
+}
+
+.artist-header {
+	display: flex;
+	p {
+		display: none;
+		opacity: 0;
+		width: 45%;
+	}
+}
+.gallery {
+	position: relative;
+	padding-top: 10em;
+	.sectionTitle {
+		padding-bottom: 4em;
+	}
+	&-btn {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border: none;
+		font-size: 3rem;
+		cursor: pointer;
+		border-radius: 50%;
+		background-color: $buttonBgc;
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+	&-btn-next {
+		top: 50%;
+		right: 13%;
+		transform: translateY(-50%);
+	}
+	&-btn-prev {
+		top: 50%;
+		left: 13%;
+		transform: translateY(-50%);
+	}
+	&-btn-x {
+		top: 20%;
+		right: 13%;
+	}
+}
+
+.gallery-item {
+	overflow: hidden;
+	cursor: pointer;
+	img {
+		width: 100%;
+		border-radius: 8px;
+		transition: opacity 0.3s;
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+	.paragraph {
+		padding: 1em 1em 2em 1em;
+	}
+}
+
+.gallery-img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $whiteBgc;
+	z-index: 300;
+	&--main {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80%;
+		height: 70%;
+		overflow: hidden;
+		border-radius: 16px;
+		img {
+			width: 100%;
+			height: 100%;
+			border-radius: 16px;
+			object-fit: cover;
+			object-position: center;
+		}
+		.paragraph {
+			position: absolute;
+			bottom: 10%;
+			background-color: $buttonBgc;
+			padding: 1em 0.5em;
+			border-radius: 8px;
+		}
+	}
+}
+
+.home.blocked {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.App.darkMode {
+	color: $white;
+	background-color: $black;
+	a {
+		color: $white;
+	}
+	.work-artist-img--desc {
+		background-color: $black;
+	}
+	.gallery-img {
+		.paragraph {
+			background-color: $whiteBgc;
+		}
+	}
+	.gallery-btn {
+		background-color: $whiteBgc;
+		color: $white;
+	}
+	.menu-item {
+		a {
+			color: $black;
+		}
+	}
+}
+
+@import './medium';
+@import './large';

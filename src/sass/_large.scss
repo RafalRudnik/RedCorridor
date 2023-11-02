@@ -1,0 +1,82 @@
+@media (min-width: 992px) {
+	.menu {
+		&-main {
+			height: 400px;
+		}
+		&-list {
+			width: 50%;
+			font-size: 4rem;
+		}
+	}
+	.header {
+		&-txt {
+			h1 {
+				font-size: 14rem;
+				span {
+					padding: 0.1em;
+				}
+			}
+			h2 {
+				font-size: 14rem;
+				sup {
+					font-size: 8rem;
+				}
+			}
+		}
+	}
+	.sectionTitle {
+		h2 {
+			font-size: 20rem;
+		}
+	}
+
+	.sectionHeader {
+		h3 {
+			font-size: 4rem;
+		}
+	}
+	.work {
+		&-main {
+			flex-direction: row;
+			gap: 1em;
+		}
+		&-artist {
+			&-img {
+				height: 80vh;
+				&--desc {
+					img {
+						width: 200px;
+						height: 150px;
+					}
+				}
+			}
+		}
+	}
+	.contactSection {
+		&-title {
+			padding: 2em 0em;
+			.sectionTitle {
+				h2 {
+					font-size: 5rem;
+				}
+			}
+		}
+	}
+	.footer {
+		.sectionTitle {
+			h2 {
+				font-size: 12rem;
+			}
+		}
+	}
+	.artist-header {
+		p {
+			font-size: 14rem;
+		}
+		img {
+			width: 600px;
+			border-radius: 16px;
+			justify-self: flex-end;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+@keyframes burgerAnim {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(45deg);
+	}
+}
+@keyframes burgerAnimBack {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-45deg);
+	}
+}
+
+@keyframes navShow {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes accordionActive {
+	0% {
+		transform: rotate(90deg);
+	}
+	100% {
+		transform: rotate((0deg));
+	}
+}
+@keyframes accordionNotActive {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate((90deg));
+	}
+}
