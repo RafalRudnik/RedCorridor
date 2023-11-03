@@ -9,21 +9,25 @@ const pageLinks = [
 		linkTo: '/leszek',
 		linkName: 'Leszek Skurski',
 		class: 'menu-item-link--leszek',
+		img: './img/lg/lg2.jpeg',
 	},
 	{
 		linkTo: '/joanna',
 		linkName: 'Joanna Skurska',
 		class: 'menu-item-link--joanna',
+		img: './img/jg/jg11.jpeg',
 	},
 	{
 		linkTo: '/contact',
 		linkName: 'Contact',
 		class: 'menu-item-link--contact',
+		img: './img/majorka.jpeg',
 	},
 	{
 		linkTo: '/rodo',
 		linkName: 'Rodo',
 		class: 'menu-item-link--rodo',
+		img: './img/rodo.jpeg',
 	},
 ];
 
@@ -103,23 +107,34 @@ function PageLink({ link, index, selectedLink, setSelectedLink }) {
 	const { handleMenuOpen } = useData();
 
 	return (
-		<li className={`menu-item ${link.class}`}>
-			<Link
-				to={`${link.linkTo}`}
-				className={`menu-item-link ${
-					selectedLink.isActive && selectedLink.index !== index
-						? 'blurClass'
-						: ''
-				}`}
-				onClick={handleMenuOpen}
-				onMouseEnter={() => {
-					setSelectedLink({ isActive: true, index });
-				}}
-				onMouseLeave={() => {
-					setSelectedLink({ isActive: false, index });
-				}}>
-				{link.linkName}
-			</Link>
-		</li>
+		<>
+			<li className={`menu-item ${link.class}`}>
+				<Link
+					to={`${link.linkTo}`}
+					className={`menu-item-link ${
+						selectedLink.isActive && selectedLink.index !== index
+							? 'blurClass'
+							: ''
+					}`}
+					onClick={handleMenuOpen}
+					onMouseEnter={() => {
+						setSelectedLink({ isActive: true, index });
+					}}
+					onMouseLeave={() => {
+						setSelectedLink({ isActive: false, index });
+					}}>
+					{link.linkName}
+				</Link>
+			</li>
+			{selectedLink.isActive && selectedLink.index === index ? (
+				<motion.div
+					className='menu-item--img'
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 1 }}>
+					<img src={link.img} alt={link.linkName}></img>
+				</motion.div>
+			) : null}
+		</>
 	);
 }

@@ -14,8 +14,11 @@ import Rodo from './pages/Rodo';
 import PageNotFound from './pages/PageNotFound';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import { useData } from './contexts/DataContext';
 
 function App() {
+	const { darkMode } = useData();
+
 	useEffect(function () {
 		const lenis = new Lenis();
 
@@ -56,7 +59,7 @@ function App() {
 	);
 
 	return (
-		<div className='App'>
+		<div className={`App ${darkMode ? 'darkMode' : ''}`}>
 			<RouterProvider router={router} />
 		</div>
 	);

@@ -7,9 +7,18 @@ function DataProvider({ children }) {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [mainAnim, setMainAnim] = useState(true);
 	const [currOpen, setCurrOpen] = useState(null);
+	const [darkMode, setDarkMode] = useState(false);
 
 	function handleMenuOpen() {
 		setMenuOpen((menuOpen) => !menuOpen);
+	}
+
+	function handleDarkMode() {
+		setDarkMode((darkMode) => !darkMode);
+	}
+
+	function handleCloseMenuByLogo() {
+		setMenuOpen(false);
 	}
 
 	return (
@@ -21,6 +30,9 @@ function DataProvider({ children }) {
 				setMainAnim,
 				currOpen,
 				setCurrOpen,
+				darkMode,
+				handleDarkMode,
+				handleCloseMenuByLogo,
 			}}>
 			{children}
 		</DataContext.Provider>

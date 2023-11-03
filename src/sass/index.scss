@@ -32,6 +32,7 @@ body {
 	overflow: hidden;
 	color: $black;
 	background-color: $white;
+	transition: background-color 0.7s, color 0.5s;
 }
 
 html.lenis {
@@ -156,6 +157,9 @@ main {
 	mix-blend-mode: difference;
 	opacity: 0;
 	animation: navShow 1s 5s both;
+	&--darkmode {
+		display: none;
+	}
 }
 .menu {
 	position: fixed;
@@ -180,13 +184,16 @@ main {
 		width: 100%;
 		gap: 1em;
 		font-size: 2.6rem;
-		overflow: hidden;
+		// overflow: hidden;
 	}
 	&-item {
 		&-link {
 			text-decoration: none;
 			color: $black;
 			transition: filter 0.4s, opacity 0.3s;
+		}
+		&--img {
+			display: none;
 		}
 	}
 }
@@ -484,8 +491,85 @@ main {
 	&-branch {
 		border: 1px solid $greyDark;
 		padding: 4em 2em;
+		transition: background-color 0.4s, color 0.3s;
 		.paragraph {
 			padding: 0em;
+		}
+		&:hover {
+			background-color: $black;
+			color: $white;
+		}
+	}
+}
+
+.rodoHeader,
+.rodoList {
+	width: 100%;
+}
+
+.rodoList {
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		padding-top: 1em;
+		padding-left: 1em;
+		font-weight: 300;
+	}
+}
+
+.contact-main {
+	display: flex;
+	flex-direction: column;
+	padding: 10em 0em;
+	gap: 5em;
+	&-left {
+		width: 100%;
+		h2 {
+			font-size: 6rem;
+			padding: 2em 0em;
+		}
+		&--img {
+			border-radius: 16px;
+			overflow: hidden;
+			img {
+				object-fit: cover;
+				object-position: center;
+				width: 100%;
+			}
+		}
+	}
+	&-right {
+		width: 100%;
+		overflow: hidden;
+		img {
+			width: 140px;
+			height: 100px;
+			border-radius: 16px;
+		}
+		ul {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			gap: 2em;
+			list-style: none;
+			li {
+				border-top: 1px solid $greyDark;
+				padding: 2em 0em;
+				&:last-of-type {
+					border-bottom: 1px solid $greyDark;
+				}
+				p {
+					font-weight: 300;
+					line-height: 180%;
+				}
+			}
+		}
+		&--top {
+			display: flex;
+			justify-content: space-evenly;
+			gap: 2em;
+			align-items: center;
 		}
 	}
 }

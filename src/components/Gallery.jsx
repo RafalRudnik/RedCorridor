@@ -4,20 +4,6 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import SectionTitle from './SectionTitle';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const fadeIn = {
-	initial: {
-		opacity: 0,
-		y: 100,
-	},
-	animate: (index) => ({
-		opacity: 1,
-		y: 0,
-		transition: {
-			delay: 0.01 * index,
-		},
-	}),
-};
-
 const slideVariants = {
 	hiddenRight: {
 		x: '100%',
